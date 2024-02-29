@@ -38,7 +38,7 @@ Please use the link/bibtex to its deposited version:
   year         = 2024,
   publisher    = {Zenodo},
   version      = {1.1},
-  doi          = {10.5281/zenodo.10727281},
+  doi          = {10.5281/zenodo.10727358},
   url          = {https://doi.org/10.5281/zenodo.10727358}
 }
 ```
