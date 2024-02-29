@@ -23,7 +23,7 @@ Muhammad, R. B., Srivastava, A., Alyaev, S., Bratvold, R. B., & Tartakovsky, D. 
 
 Please use the link/bibtex to its deposited version:
 
-<a href="https://doi.org/10.5281/zenodo.10727281"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10727281.svg" alt="DOI"></a>
+<a href="https://doi.org/10.5281/zenodo.10727358"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10727358.svg" alt="DOI"></a>
 
 ```
 @software{muhammad2024RLPFPy,
@@ -39,7 +39,7 @@ Please use the link/bibtex to its deposited version:
   publisher    = {Zenodo},
   version      = {1.1},
   doi          = {10.5281/zenodo.10727281},
-  url          = {https://doi.org/10.5281/zenodo.10727281}
+  url          = {https://doi.org/10.5281/zenodo.10727358}
 }
 ```
 
