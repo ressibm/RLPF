@@ -104,5 +104,3 @@ for seed in [9, 140, 272, 387, 400, 571, 624, 733, 898, 956, 1000]:
     for best in [5]:        
         train_func(n_games=20000 + 1, inputs="PF", best=best,
                    dec=32, thickness=20, seed=seed, logs=True,)
-
-#8, 117, 224, 360, 439, 539, 670, 759, 808, 903
