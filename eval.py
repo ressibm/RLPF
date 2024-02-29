@@ -71,7 +71,8 @@ def eval_func(n_games, inputs, best, dec, thickness, seed_eval, bd_agent=0, load
         if env_eval.faults_num >= 0:
             scores[i] = score
             contact[i] = env_eval.contact
-            env_eval.FullPlot()
+            if plot:
+                env_eval.FullPlot()
 
             if inputs == "PF":
                 beststate[i,] = env_eval.best_state
@@ -98,5 +99,5 @@ if __name__ == "__main__":
             for dec in [32]:
                 score = eval_func(n_games=10, inputs="PF", best=best,
                                 dec=dec, thickness=20, seed_eval=13063, seed_load=seed_load,
-                                plot=False)
+                                plot=True)
                 print('Mean score: ', score)

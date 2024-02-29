@@ -43,7 +43,7 @@ def train_func(n_games, inputs, best, dec, thickness, seed, logs):
         bd_actions = 11
 
         bd_agent = DQNAgent(n_actions=bd_actions, n_states=states, seed=seed, multi=multi, batch_size=64,
-                            mem_size=50000, saved_dir="trained_network/", env_name="v2/%s" % (string_name),)
+                            mem_size=50000, saved_dir="trained_network/", env_name="%s" % (string_name),)
 
         eval_score = np.zeros(n_games // 500 + 1)
         best_score = -np.inf
@@ -100,7 +100,7 @@ def train_func(n_games, inputs, best, dec, thickness, seed, logs):
         print("Best score %.2f" % best_score)
 
 
-for seed in [9, 140, 272, 387, 400, 571, 624, 733, 898, 956, 1000]:
+for seed in [140, 272, 387, 400, 571, 624, 733, 898, 956, 1000]:
     for best in [5]:        
         train_func(n_games=20000 + 1, inputs="PF", best=best,
                    dec=32, thickness=20, seed=seed, logs=True,)
