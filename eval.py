@@ -30,7 +30,7 @@ def eval_func(n_games, inputs, best, dec, thickness, seed_eval, bd_agent=0, load
                                  n_states=states, seed=seed_eval,
                                  multi=multi)
 
-        string = "trained_network/v2/%s_best=%s_%s_%s.pth"
+        string = "trained_network/%s_best=%s_%s_%s.pth"
 
         bd_agent_eval.Q_eval.load_state_dict(
             T.load(string % (inputs, best, seed_load, dec)))
@@ -42,10 +42,6 @@ def eval_func(n_games, inputs, best, dec, thickness, seed_eval, bd_agent=0, load
 
     scores = np.full(n_games, np.nan)
     contact = np.full(n_games, np.nan)
-    if plot:
-        UB = np.full((n_games, env_eval.nDiscretizations + 1), np.nan)
-        LB = np.full((n_games, env_eval.nDiscretizations + 1), np.nan)
-        bitdepth = np.full((n_games, env_eval.nDiscretizations + 1), np.nan)
 
     if inputs == "PF":
         beststate = np.full((n_games, env_eval.nDiscretizations + 1), np.nan)
@@ -69,18 +65,13 @@ def eval_func(n_games, inputs, best, dec, thickness, seed_eval, bd_agent=0, load
             if env_eval.error == True:
                 score = -224
             observation = observation_
-        print('Total = ', (time.time() - start))
+        print('Time = ', (time.time() - start))
+        print('Reservoir contact: ', (224 + score)/224)
 
         if env_eval.faults_num >= 0:
             scores[i] = score
             contact[i] = env_eval.contact
             env_eval.FullPlot()
-
-            if plot:
-                UB[i,] = env_eval.boundary[: env_eval.nDiscretizations + 1] + \
-                    env_eval.calc_adj
-                LB[i,] = env_eval.boundary[: env_eval.nDiscretizations + 1]
-                bitdepth[i,] = env_eval.bitdepth[: env_eval.nDiscretizations + 1]
 
             if inputs == "PF":
                 beststate[i,] = env_eval.best_state
@@ -95,17 +86,17 @@ def eval_func(n_games, inputs, best, dec, thickness, seed_eval, bd_agent=0, load
     idx_not_nan = np.where(~np.isnan(scores))[0]
 
     if inputs == "PF":
-        print(rmsd_gamma / len(idx_not_nan))
-        print(rmsd_state / len(idx_not_nan))
+        print('Mean gamma error: ', rmsd_gamma / len(idx_not_nan))
+        print('Mean state error: ', rmsd_state / len(idx_not_nan))
 
-    return np.mean(scores[idx_not_nan])#, UB, LB, bitdepth
+    return np.mean(scores[idx_not_nan])
 
 
 if __name__ == "__main__":
-    for best in [5]:
-        for seed_load in [9,  140, 272, 387, 400, 571, 624, 733, 898, 956, 1000]:
+    for best in [1]:
+        for seed_load in [9]:
             for dec in [32]:
-                score = eval_func(n_games=1000, inputs="PF", best=best,
+                score = eval_func(n_games=10, inputs="PF", best=best,
                                 dec=dec, thickness=20, seed_eval=13063, seed_load=seed_load,
                                 plot=False)
-                print(score)
+                print('Mean score: ', score)
